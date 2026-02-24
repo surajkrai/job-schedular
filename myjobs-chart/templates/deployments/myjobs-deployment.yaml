@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: printing-job
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app: printing-job
+  template:
+    metadata:
+      labels:
+        app: printing-job
+    spec:
+      containers:
+        - name: printing-job
+          image: myjobs:1.0
+          ports:
+            - containerPort: 8080

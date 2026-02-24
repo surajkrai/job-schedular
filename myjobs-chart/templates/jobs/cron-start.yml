@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: scale-myjobs-up
+spec:
+  schedule: "12 22 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: deployment-scaler
+          containers:
+            - name: kubectl
+              image: bitnami/kubectl
+              command:
+                - /bin/sh
+                - -c
+                - kubectl scale deployment printing-job --replicas=1
+          restartPolicy: OnFailure

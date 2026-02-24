@@ -1,0 +1,1 @@
+nerdctl --namespace k8s.io build -t myjobs:1.0 .
